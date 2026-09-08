@@ -99,6 +99,10 @@ The best fit for the data will vary between sequencing runs, markers (16S, 18S, 
 Compare each of the .qzv files `{trunc_len}_denoising-stats-viz.qzv` at [QIIME 2 View](https://view.qiime2.org/).
 You are looking for the best read retention, sucessful merging, and sufficient depth for your marker. 
 
+### Important note about denoising ITS
+
+ITS data is denoised slightly differently due to its highly variable lengths across different fungal species, therefore it is not truncated at all, but has an extra trimming step using ITSxpress that trims the conserves regions surrounding ITS using a Hidden Markov Model. See the file `ITS_denoise_cutadapt_dada2_itsexpress` in the repo for this pipeline in detail. 
+
 # Taxonomic Classification
 
 The representative sequences you keep after denoising are then read for taxonomic assignment. 
