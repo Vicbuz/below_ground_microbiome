@@ -25,7 +25,7 @@ Raw FASTQ files
 3. Taxonomic Classification
        │
        ▼
-Feature Table + Representative Sequences + Taxonomy
+Abundance and Taxonomy table output
 
 ```
 # Import
