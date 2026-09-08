@@ -32,34 +32,36 @@ qiime metadata tabulate \
 
 ### abundance table output
 
+
 qiime tools export \
- --input-path tp_bacteria_280_table_clustered.qza \
- --output-path tp_bacteria_280_table
+ --input-path fungi_fls_ecm_table_clustered.qza \
+ --output-path fungi_fls_ecm_table
 
 biom convert \
- -i tp_bacteria_280_table/feature-table.biom \
- -o tp_bacteria_280_table/feature-table.tsv \
+ -i fungi_fls_ecm_table/feature-table.biom \
+ -o fungi_fls_ecm_table/feature-table.tsv \
  --to-tsv
 
 qiime tools export \
- --input-path tp_bacteria_280_taxonomy_results_clustered.qza \
- --output-path tp_bacteria_280_taxonomy
+ --input-path fungi_fls_ecm_taxonomy_results_clustered.qza \
+ --output-path fungi_fls_ecm_taxonomy
 
 # move into taxonomy directory so paths are safe
-cd tp_bacteria_280_taxonomy
+cd fungi_fls_ecm_taxonomy
 
 awk 'BEGIN{FS=OFS="\t"} NR==1{print "#OTUID","taxonomy"} NR>1{print $1,$2}' taxonomy.tsv > taxonomy_biom.tsv
 
 cd ..
 
 biom add-metadata \
- -i tp_bacteria_280_table/feature-table.biom \
- -o tp_bacteria_280_table/feature-table-tax.biom \
- --observation-metadata-fp tp_bacteria_280_taxonomy/taxonomy_biom.tsv \
+ -i fungi_fls_ecm_table/feature-table.biom \
+ -o fungi_fls_ecm_table/feature-table-tax.biom \
+ --observation-metadata-fp fungi_fls_ecm_taxonomy/taxonomy_biom.tsv \
  --sc-separated taxonomy
 
 biom convert \
- -i tp_bacteria_280_table/feature-table-tax.biom \
- -o tp_bacteria_280_table/feature-table-tax.tsv \
+ -i fungi_fls_ecm_table/feature-table-tax.biom \
+ -o fungi_fls_ecm_table/feature-table-tax.tsv \
  --to-tsv \
  --header-key taxonomy
+
